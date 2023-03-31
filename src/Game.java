@@ -1,24 +1,35 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Game {
 
     Word word;
+    String inputString;
     Hangman man;
+    int[] gamemode;
 
-    public Game(int[] gamemode)
+    JTextField textField;
+
+    public Game(int[] gamemode, JPanel panel)
     {
-        //TODO delete these notes
+        this.gamemode = gamemode;
+
         if (gamemode[1] == 0)     //picker is computer
         {
             word = new Word(gamemode[3], gamemode[4]);
+            startGame();
         }
 
         else if (gamemode[1] == 1)      //picker is human
         {
-            //can we add a prompt so user can pick a word here ?
-            //like a f r a m  e or something
+            makePickWordPanel(panel);
         }
+    }
 
+    private void startGame()
+    {
         if (gamemode[2] == 0)      //guesser is computer
         {
             man = new Hangman(word, true);
@@ -39,4 +50,60 @@ public class Game {
         man.setVisible(true);
     }
 
+    private void makePickWordPanel(JPanel panel)
+    {
+        Font fontTwo = new Font("Arial Bold", 0, 36);
+        panel.setVisible(false);
+        //TODO make components array more dynamic ?
+        //TODO make buttons array more dynamic ?
+        GridBagConstraints constraints = new GridBagConstraints();
+
+        panel.removeAll();
+        panel.setLayout(new GridBagLayout());
+        panel.setBackground(Color.LIGHT_GRAY);
+
+        JTextField title = new JTextField();
+        title.setFont(new Font("Arial Bold", 0, 46));
+        title.setEditable(false);
+        title.setText("Please Enter a Word to be Guessed: ");
+        title.setBackground(Color.LIGHT_GRAY);
+
+        textField = new JTextField(15);
+        textField.setFont(fontTwo);
+        textField.setPreferredSize(new Dimension(800,80));
+
+        JButton button = new JButton();
+        button.addActionListener(new thisListener());
+        button.setFont(fontTwo);
+        button.setText("Submit");
+        button.setPreferredSize(new Dimension(200,50));
+
+        constraints.gridwidth = 3;
+        constraints.gridheight = 4;
+        constraints.gridx = 1;
+        //constraints.gridy = 0;
+        constraints.weightx = 0.65;
+        constraints.weighty = 0.25;
+        panel.add(title, constraints);
+        //constraints.gridy = 1;
+        constraints.weightx = 0.5;
+        constraints.weighty = 0.25;
+        panel.add(textField,constraints);
+        //constraints.gridy = 2;
+        constraints.weightx = 0.25;
+        constraints.weighty = 0.2;
+        panel.add(button,constraints);
+
+        panel.setVisible(true);
+    }
+
+    private class thisListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            inputString = textField.getText();
+            word = new Word(gamemode[3], inputString);
+            startGame();
+        }
+    }
 }
