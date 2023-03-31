@@ -160,14 +160,14 @@ public class Menu implements ActionListener
                 slider.setPaintLabels(true);
                 slider.createStandardLabels(1);
                 slider.setBackground(Color.LIGHT_GRAY);
-                slider.setValue(gamemode[4]);
+                slider.setValue(gamemode[3]);
                 slider.addChangeListener(new ChangeListener() {
                         @Override
                         public void stateChanged(ChangeEvent e) {
                                 JSlider source = (JSlider)e.getSource();
                                 if (!source.getValueIsAdjusting()) {
                                         System.out.println(source.getValue());
-                                        gamemode[4] = (int)source.getValue();
+                                        gamemode[3] = (int)source.getValue();
                                 }
                         }
                 });
