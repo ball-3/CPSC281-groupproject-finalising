@@ -109,8 +109,7 @@ public class Hangman extends JFrame implements ActionListener {
 
                 if (CheckGame()) {
                     getContentPane().removeAll();
-                    JPanel result = new GameoverPanel(true);
-                    getContentPane().add(new JPanel());
+                    getContentPane().add(new GameoverPanel(true, word.getWord()));
                     getContentPane().revalidate();
                     getContentPane().repaint();
                    
@@ -118,7 +117,7 @@ public class Hangman extends JFrame implements ActionListener {
 
                 } else if (word.getGameOver()) {
                     getContentPane().removeAll();
-                    JPanel result = new GameoverPanel(false);
+                    JPanel result = new GameoverPanel(false, word.getWord());
                     getContentPane().add(result);
                     getContentPane().revalidate();
                     getContentPane().repaint();
