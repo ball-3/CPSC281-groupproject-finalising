@@ -28,9 +28,10 @@ public class GameoverPanel extends JPanel {
         if (clear) {
             result = "CLEAR";
             color = Color.CYAN;
-        } else
+        } else {
             result = "GAME OVER";
-        color = Color.pink;
+            color = Color.pink;
+        }
 
     }
 
