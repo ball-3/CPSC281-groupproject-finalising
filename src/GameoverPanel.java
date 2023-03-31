@@ -9,7 +9,7 @@ public class GameoverPanel extends JPanel {
     private String result;
 
     public GameoverPanel(boolean clear) {
-        setPreferredSize(new Dimension(1000, 800));
+        setPreferredSize(new Dimension(1000, 600));
         JButton restart = new JButton("menu");
         restart.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
