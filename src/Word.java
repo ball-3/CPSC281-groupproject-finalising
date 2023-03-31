@@ -17,7 +17,7 @@ public class Word {
         return wrongInput.toString();
     }
 
-    Word(String word, int level) {
+    Word(int level, String word) {
         this.word = word;
         limitMistake = (level - 27) * -1;
         System.out.println("limit is " + limitMistake + "   level is " + level);

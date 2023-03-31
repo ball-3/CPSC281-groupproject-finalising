@@ -23,7 +23,6 @@ public class Menu implements ActionListener
         //frame 1000 by 800
         public Menu()
         {
-                //TODO initialise gamemode to some default gamemode
                 panel = new JPanel();
 
                 //default settings:
@@ -176,7 +175,7 @@ public class Menu implements ActionListener
                                 }
                         }
                 }
-                if (gamemode[1] == 0)//TODO repaint if this is changed, perhaps not here
+                if (gamemode[1] == 1)//TODO repaint if this is changed, perhaps not here
                 {
                         components[4][0].setVisible(false);
                         components[4][1].setVisible(false);
@@ -237,7 +236,7 @@ public class Menu implements ActionListener
                 if (actionCommand == "start")
                 {
                         //TODO delete old jframe frame.dispose()
-                        game = new Game(gamemode);
+                        game = new Game(gamemode, panel);
                 }
                 else if (actionCommand == "settings")
                 {
