@@ -107,6 +107,23 @@ public class Hangman extends JFrame implements ActionListener {
                 draw.updateLevel(currentLevel);
                 hangmanPanel.repaint();
 
+                if (CheckGame()) {
+                    getContentPane().removeAll();
+                    getContentPane().add(new GameoverPanel(true, word.getWord()));
+                    getContentPane().revalidate();
+                    getContentPane().repaint();
+                   
+                    
+
+                } else if (word.getGameOver()) {
+                    getContentPane().removeAll();
+                    JPanel result = new GameoverPanel(false, word.getWord());
+                    getContentPane().add(result);
+                    getContentPane().revalidate();
+                    getContentPane().repaint();
+
+                }
+
             }
         });
 
@@ -131,15 +148,13 @@ public class Hangman extends JFrame implements ActionListener {
         mainPanel.add(inputPanel, BorderLayout.PAGE_START);
         mainPanel.add(hangmanPanel, BorderLayout.CENTER);
 
-        add(mainPanel);
+        getContentPane().add(mainPanel);
 
     }
 
     public void guessChar(char c, Word w) {
         // includedWord will return "1,2" if word apple and character is p
         ArrayList<Integer> matchedIndexes = w.indexesOfCharacter(c);
-        String num = "";
-        String newDisplay;
         boolean changed = false;
         System.out.println(matchedIndexes);
         if (matchedIndexes.size() != 0) {
