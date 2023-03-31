@@ -25,7 +25,6 @@ public class Game {
         else if (gamemode[1] == 1)      //picker is human
         {
             makePickWordPanel(panel);
-            word = new Word(gamemode[3], inputString);
         }
     }
 
@@ -103,6 +102,7 @@ public class Game {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             inputString = textField.getText();
+            word = new Word(gamemode[3], inputString);
             startGame();
         }
     }
