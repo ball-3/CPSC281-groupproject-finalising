@@ -26,8 +26,8 @@ public class Menu implements ActionListener
                 panel = new JPanel();
 
                 //default settings:
-                gamemode[1] = 0;
-                gamemode[2] = 1;
+                gamemode[1] = 1;
+                gamemode[2] = 0;
                 gamemode[3] = 0;
                 gamemode[4] = 0;
 
@@ -137,8 +137,8 @@ public class Menu implements ActionListener
                 }
                 textFields[0].setFont(new Font("Arial Bold", 0, 38));
                 textFields[0].setText("Settings");
-                textFields[1].setText("Player 1:");
-                textFields[2].setText("Player 2:");
+                textFields[1].setText("Word Picker:");
+                textFields[2].setText("Word Guesser:");
                 textFields[3].setText("Mistakes Allowed:");
                 textFields[4].setText("Word Category:");
 

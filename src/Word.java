@@ -12,6 +12,7 @@ public class Word {
     private int stepSize;
     private int nextState = 0; // hangman drawing state
     private boolean gameOver = false;
+    private String[] chosenWordCategory;
 
     public String getWrongInput() {
         return wrongInput.toString();
@@ -66,9 +67,14 @@ public class Word {
         return word.length();
     }
 
+    public String[] getChosenWordCategory(){
+        return chosenWordCategory;
+    }
+
     private void generateNewRandomWord(int wordCategory) {
         Random random = new Random();
         String[] picked = category.get(wordCategory);
+        chosenWordCategory = picked;
         categoryName = picked[0];
         int rand;
         while (true) {
