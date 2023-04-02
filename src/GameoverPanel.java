@@ -8,9 +8,12 @@ import javax.swing.*;
 public class GameoverPanel extends JPanel {
     private String result;
     private String word;
+    private Color color;
 
     public GameoverPanel(boolean clear, String w) {
-        setPreferredSize(new Dimension(1000, 600));
+        setOpaque(true);
+        setBackground(Color.BLUE);
+        setPreferredSize(new Dimension(1000, 650));
         JButton restart = new JButton("menu");
         restart.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
@@ -24,15 +27,19 @@ public class GameoverPanel extends JPanel {
 
         if (clear) {
             result = "CLEAR";
-            setBackground(Color.CYAN);
+            color = Color.CYAN;
         } else
             result = "GAME OVER";
-        setBackground(Color.red);
+        color = Color.pink;
 
     }
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(color);
+        g2.fillRect(0, 0, 1000, 650);
+
+        g2.setColor(Color.black);
         g2.setFont(new Font("MS Comic Sans", Font.BOLD, 40));
         g2.drawString(result, 300, 100);
         g2.drawString("Answer was:", 300, 300);

@@ -32,6 +32,7 @@ public class Game {
     {
         if (gamemode[2] == 0)      //guesser is computer
         {
+
             man = new Hangman(word, true);
         }
 
@@ -45,7 +46,6 @@ public class Game {
     //TODO fix this, this is basically just copied off the makeshift settings from menu for the hangman
     private void formatHangman()
     {
-        man.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         man.setSize(1000,650);      //TODO is this the final sizee ? no but should be fixed (removed) with the frame fixing
         man.setVisible(true);
     }

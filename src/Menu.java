@@ -4,6 +4,8 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class Menu implements ActionListener
 {
@@ -21,6 +23,7 @@ public class Menu implements ActionListener
         //should have some kind of documentation for the gamemode options and the associated numbers
         int[] gamemode = new int[/*size of number of gamemode options*/5];
         JButton[] buttons;
+        String[] wordCategories;
 
         //frame 1000 by 800
         public Menu()
@@ -32,6 +35,8 @@ public class Menu implements ActionListener
                 gamemode[2] = 1;
                 gamemode[3] = 0;
                 gamemode[4] = 0;
+
+                wordCategories = new String[]{"Fruits", "Popular Artists", "Computer Science"};
 
                 makeStartPanel();
         }
@@ -119,15 +124,20 @@ public class Menu implements ActionListener
                 buttons[4].setActionCommand("p2computer");
                 buttons[4].setText("Computer");
                 if (gamemode[2] == 0) buttons[4].setBackground(Color.GREEN);
-                buttons[5].setActionCommand("fruit");
-                buttons[5].setText("Fruits");
-                if (gamemode[4] == 0) buttons[5].setBackground(Color.GREEN);
-                buttons[6].setActionCommand("popart");
-                buttons[6].setText("Popular Artists");
-                if (gamemode[4] == 1) buttons[6].setBackground(Color.GREEN);
-                buttons[7].setActionCommand("cpsc");
-                buttons[7].setText("Computer Science");
-                if (gamemode[4] == 2) buttons[7].setBackground(Color.GREEN);
+
+                //TODO make this a jcombobox
+//                buttons[5].setActionCommand("fruit");
+//                buttons[5].setText("Fruits");
+//                if (gamemode[4] == 0) buttons[5].setBackground(Color.GREEN);
+//                buttons[6].setActionCommand("popart");
+//                buttons[6].setText("Popular Artists");
+//                if (gamemode[4] == 1) buttons[6].setBackground(Color.GREEN);
+//                buttons[7].setActionCommand("cpsc");
+//                buttons[7].setText("Computer Science");
+//                if (gamemode[4] == 2) buttons[7].setBackground(Color.GREEN);
+                buttons[5].setVisible(false);
+                buttons[6].setVisible(false);
+                buttons[7].setVisible(false);
 
                 for (int i = 0; i < textFields.length; i++)
                 {
@@ -154,6 +164,7 @@ public class Menu implements ActionListener
                 components[3][0] = textFields[3];
                 JSlider slider = new JSlider(0,27,gamemode[3]);
                 components[3][1] = slider;
+                slider.setPreferredSize(new Dimension(400,50));
                 slider.setMajorTickSpacing(5);
                 slider.setMinorTickSpacing(1);
                 slider.setPaintTicks(true);
@@ -171,11 +182,14 @@ public class Menu implements ActionListener
                                 }
                         }
                 });
-                //TODO add header 'difficulty' over components[3]
                 components[4][0] = textFields[4];
-                components[4][1] = buttons[5];
-                components[4][2] = buttons[6];
-                components[4][3] = buttons[7];
+                JComboBox categoryBox = new JComboBox(wordCategories);
+                categoryBox.setPreferredSize(new Dimension(200,50));
+                categoryBox.addItemListener(new ThisListener());
+                components[4][1] = categoryBox;
+//                components[4][1] = buttons[5];
+//                components[4][2] = buttons[6];
+//                components[4][3] = buttons[7];
                 //TODO more constraints here ?
                 constraints.weightx = 0.7/components[0].length;
                 constraints.weighty = 0.8/components.length;
@@ -186,19 +200,15 @@ public class Menu implements ActionListener
                         for (int j = 0; j < components[i].length; j++)
                         {
                                 if (j == 0) constraints.weightx = 0.3;
+                                constraints.gridwidth = 1;
+                                if ((i == 3 || i == 4) && j == 1) constraints.gridwidth = 2;
+
                                 if (components[i][j] != null)
                                 {
                                         constraints.gridx = j;
                                         panel.add(components[i][j], constraints);
                                 }
                         }
-                }
-                if (gamemode[1] == 1)//TODO repaint if this is changed, perhaps not here
-                {
-                        components[4][0].setVisible(false);
-                        components[4][1].setVisible(false);
-                        components[4][2].setVisible(false);
-                        components[4][3].setVisible(false);
                 }
         }
 
@@ -285,22 +295,38 @@ public class Menu implements ActionListener
                         gamemode[2] = 0;
                         makeSettingsPanel();
                 }
-                else if (actionCommand == "fruit")
-                {
-                        gamemode[4] = 0;
-                        makeSettingsPanel();
-                }
-                else if (actionCommand == "popart")
-                {
-                        gamemode[4] = 1;
-                        makeSettingsPanel();
-                }
-                else if (actionCommand == "cpsc")
-                {
-                        gamemode[4] = 2;
-                        makeSettingsPanel();
-                }
+//                else if (actionCommand == "fruit")
+//                {
+//                        gamemode[4] = 0;
+//                        makeSettingsPanel();
+//                }
+//                else if (actionCommand == "popart")
+//                {
+//                        gamemode[4] = 1;
+//                        makeSettingsPanel();
+//                }
+//                else if (actionCommand == "cpsc")
+//                {
+//                        gamemode[4] = 2;
+//                        makeSettingsPanel();
+//                }
                 //TODO in rikos gameoverpanel make going back to menu go back to menu
 
+        }
+}
+
+class ThisListener implements ItemListener {
+
+        String item;
+
+        public String getItem()
+        {
+                return item;
+        }
+
+        @Override
+        public void itemStateChanged(ItemEvent itemEvent) {
+                JComboBox source = (JComboBox) itemEvent.getSource();
+                item = (String) source.getSelectedItem();
         }
 }
