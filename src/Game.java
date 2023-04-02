@@ -19,7 +19,7 @@ public class Game {
         if (gamemode[1] == 0)     //picker is computer
         {
             word = new Word(gamemode[3], gamemode[4]);
-            startGame();
+            startGame(true);
         }
 
         else if (gamemode[1] == 1)      //picker is human
@@ -28,17 +28,17 @@ public class Game {
         }
     }
 
-    private void startGame()
+    private void startGame(boolean isComputerPicker)
     {
         if (gamemode[2] == 0)      //guesser is computer
         {
 
-            man = new Hangman(word, true);
+            man = new Hangman(word, true, isComputerPicker);
         }
 
         else if (gamemode[2] == 1)      //guesser is human
         {
-            man = new Hangman(word,false);
+            man = new Hangman(word,false, isComputerPicker);
         }
         formatHangman();
     }
@@ -103,7 +103,7 @@ public class Game {
         public void actionPerformed(ActionEvent actionEvent) {
             inputString = textField.getText();
             word = new Word(gamemode[3], inputString);
-            startGame();
+            startGame(false);
         }
     }
 }
