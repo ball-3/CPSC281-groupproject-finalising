@@ -14,7 +14,7 @@ public class Word {
     private boolean gameOver = false;
     private static String[] chosenWordCategory;
     private int numMistakes;
-    private ArrayList<Integer> indexes;
+    private static ArrayList<Integer> indexes;
 
 
     public String getWrongInput() {
@@ -121,7 +121,7 @@ public class Word {
         return send;
     }
 
-    public ArrayList<Integer> getIndexes(){
+    public static ArrayList<Integer> getIndexes(){
         return indexes;
     }
 

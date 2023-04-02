@@ -38,7 +38,7 @@ public class ComputerGuesser extends Player{
         }
 
         System.out.println("\nGuessed letter: " + guessedLetter);
-        correctGuessIndexes = checkLetter(guessedLetter);
+        correctGuessIndexes = Word.getIndexes();
 
         listOfGuessedLetters.add(currentLetter);
 
