@@ -18,9 +18,11 @@ public class Word {
         return wrongInput.toString();
     }
 
-    Word(int limitMistake, String word) {
+    Word(int level, String word) {
         this.word = word;
-        int level = 1 + (limitMistake - 27)* -1;
+        limitMistake = (level - 27) * -1;
+        if (limitMistake == 0) limitMistake = -1;
+        System.out.println("limitmistake" + limitMistake);
         System.out.println("limit is " + limitMistake + "   level is " + level);
         stepSize = 27 / limitMistake;
         nextState = 27 % limitMistake;
@@ -38,6 +40,8 @@ public class Word {
         category.add(computer_science);
         generateNewRandomWord(wordCategory);
         limitMistake = (level - 27) * -1;
+        if (limitMistake == 0) limitMistake = -1;
+        System.out.println("limitmistake" + limitMistake);
         System.out.println("limit is " + limitMistake + "   level is " + level);
         stepSize = 27 / limitMistake;
         nextState = 27 % limitMistake;
