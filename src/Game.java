@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 
 /**
@@ -29,9 +27,7 @@ public class Game {
 
         if (gamemode[1] == 0)     //picker is computer
         {
-            System.out.println("Number of mistakes allowed:" + gamemode[3]);
             word = new Word(gamemode[3], gamemode[4]);
-
             startGame(true);
         }
 
@@ -86,10 +82,9 @@ public class Game {
         textField.setBorder(null);
         textField.setBackground(Main.c3);
         textField.setForeground(Main.c4);
-        textField.addKeyListener(new EnterListener(back));
 
         JButton button = new JButton();
-        button.addActionListener(new ThisListener(back));
+        button.addActionListener(new thisListener(back));
         button.setFont(fontTwo);
         button.setText("Submit");
         button.setBackground(Main.c3);
@@ -120,11 +115,11 @@ public class Game {
      * Custom listener class that starts a game (with help of Game)
      * and returns frame to home screen when an action is performed.
      */
-    private class ThisListener implements ActionListener
+    private class thisListener implements ActionListener
     {
         JButton back;
 
-        public ThisListener(JButton back)
+        public thisListener(JButton back)
         {
             this.back = back;
         }
@@ -134,35 +129,6 @@ public class Game {
             word = new Word(gamemode[3], inputString);
             startGame(false);
             back.doClick();
-        }
-    }
-
-    private class EnterListener implements KeyListener {
-        JButton back;
-
-            public EnterListener(JButton back)
-        {
-            this.back = back;
-        }
-        @Override
-        public void keyTyped(KeyEvent keyEvent) {
-            if (keyEvent.getKeyChar() == '\n')
-            {
-                inputString = textField.getText();
-                word = new Word(gamemode[3], inputString);
-                startGame(false);
-                back.doClick();
-            }
-        }
-
-        @Override
-        public void keyPressed(KeyEvent keyEvent) {
-
-        }
-
-        @Override
-        public void keyReleased(KeyEvent keyEvent) {
-
         }
     }
 }

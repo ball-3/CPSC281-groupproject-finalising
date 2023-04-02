@@ -84,7 +84,7 @@ public class BigramGraph {
         Letter[] kListOfPointers = {i};
         addPointers(k, kListOfPointers);
 
-        Letter[] lListOfPointers = {a};
+        Letter[] lListOfPointers = {e};
         addPointers(l, lListOfPointers);
 
         Letter[] mListOfPointers = {a,e};

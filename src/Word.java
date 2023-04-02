@@ -13,6 +13,8 @@ public class Word {
     private int nextState = 0; // hangman drawing state
     private boolean gameOver = false;
     private static String[] chosenWordCategory;
+    private int numMistakes;
+    private ArrayList<Integer> indexes;
 
 
     public String getWrongInput() {
@@ -20,6 +22,7 @@ public class Word {
     }
 
     Word(int limitMistake, String word) {
+        numMistakes = 0;
         this.word = word;
         if (limitMistake == 0) limitMistake = -1;
         System.out.println("limitmistake" + limitMistake);
@@ -40,6 +43,7 @@ public class Word {
         category.add(popular_artist);
         category.add(computer_science);
         generateNewRandomWord(wordCategory);
+        numMistakes = 0;
         if (limitMistake == 0) limitMistake = -1;
         System.out.println("limitmistake " + limitMistake);
         System.out.println("limit is " + limitMistake);
@@ -101,13 +105,24 @@ public class Word {
 
             }
         }
-        if (send.size() == 0)
+
+        indexes = send;
+        if (send.size() == 0){
             wrongInput.insert(c);
-        if (wrongInput.getSize()>limitMistake){
+            numMistakes++;
+
+            System.out.println("Number of mistakes: " + numMistakes + "\n Limit of Mistakes: " + limitMistake);
+        }
+
+        if (numMistakes>limitMistake){
             gameOver = true;
         }
 
         return send;
+    }
+
+    public ArrayList<Integer> getIndexes(){
+        return indexes;
     }
 
 }
