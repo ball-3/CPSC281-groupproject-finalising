@@ -1,6 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * Main Class as part of the Hangman Project
+ *
+ * Main holds some static variables and creates a Menu object.
+ */
 public class Main {
 
     static Color c1 = new Color(70,104,101,255);//clear game color

@@ -3,6 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/**
+ * Game Class as part of the Hangman Project
+ *
+ * Game gets the picker to picker a word, either via interactive screen or by creating a new Word object.
+ * Game then creates a new Hangman object
+ */
 public class Game {
 
     Word word;
@@ -11,10 +18,12 @@ public class Game {
     int[] gamemode;
 
     JTextField textField;
+    JButton back;
 
-    public Game(int[] gamemode, JPanel panel)
+    public Game(int[] gamemode, JPanel panel, JButton back)
     {
         this.gamemode = gamemode;
+        this.back = back;
 
         if (gamemode[1] == 0)     //picker is computer
         {
@@ -43,10 +52,9 @@ public class Game {
         formatHangman();
     }
 
-    //TODO fix this, this is basically just copied off the makeshift settings from menu for the hangman
     private void formatHangman()
     {
-        man.setSize(1000,650);      //TODO is this the final sizee ? no but should be fixed (removed) with the frame fixing
+        man.setSize(1000,650);
         man.setVisible(true);
     }
 
@@ -54,44 +62,48 @@ public class Game {
     {
         Font fontTwo = new Font("Arial Bold", 0, 36);
         panel.setVisible(false);
-        //TODO make components array more dynamic ?
-        //TODO make buttons array more dynamic ?
         GridBagConstraints constraints = new GridBagConstraints();
 
         panel.removeAll();
         panel.setLayout(new GridBagLayout());
-        panel.setBackground(Main.c3);
+        panel.setBackground(Main.c2);
 
         JTextField title = new JTextField();
         title.setFont(new Font("Arial Bold", 0, 46));
         title.setEditable(false);
         title.setText("Please Enter a Word to be Guessed: ");
-        title.setBackground(Main.c3);
+        title.setBackground(Main.c2);
+        title.setForeground(Main.c3);
         title.setBorder(null);
 
         textField = new JTextField(15);
         textField.setFont(fontTwo);
         textField.setPreferredSize(new Dimension(800,80));
+        textField.setBorder(null);
+        textField.setBackground(Main.c3);
+        textField.setForeground(Main.c4);
 
         JButton button = new JButton();
-        button.addActionListener(new thisListener());
+        button.addActionListener(new thisListener(back));
         button.setFont(fontTwo);
         button.setText("Submit");
-        button.setBackground(Main.c1);
+        button.setBackground(Main.c3);
+        button.setForeground(Main.c2);
+        button.setBorder(null);
         button.setPreferredSize(new Dimension(200,50));
 
         constraints.gridwidth = 3;
         constraints.gridheight = 4;
         constraints.gridx = 1;
-        //constraints.gridy = 0;
+        //constraints.gridy = 0;        created errors in formatting for some reason so left out
         constraints.weightx = 0.65;
         constraints.weighty = 0.25;
         panel.add(title, constraints);
-        //constraints.gridy = 1;
+        //constraints.gridy = 1;        created errors in formatting for some reason so left out
         constraints.weightx = 0.5;
         constraints.weighty = 0.25;
         panel.add(textField,constraints);
-        //constraints.gridy = 2;
+        //constraints.gridy = 2;        created errors in formatting for some reason so left out
         constraints.weightx = 0.25;
         constraints.weighty = 0.2;
         panel.add(button,constraints);
@@ -99,13 +111,24 @@ public class Game {
         panel.setVisible(true);
     }
 
+    /**
+     * Custom listener class that starts a game (with help of Game)
+     * and returns frame to home screen when an action is performed.
+     */
     private class thisListener implements ActionListener
     {
+        JButton back;
+
+        public thisListener(JButton back)
+        {
+            this.back = back;
+        }
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             inputString = textField.getText();
             word = new Word(gamemode[3], inputString);
             startGame(false);
+            back.doClick();
         }
     }
 }
