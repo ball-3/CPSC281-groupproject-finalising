@@ -38,7 +38,7 @@ public class Menu implements ActionListener
                 //default settings:
                 gamemode[1] = 0;
                 gamemode[2] = 0;
-                gamemode[3] = 0;
+                gamemode[3] = 8;
                 gamemode[4] = 0;
 
                 wordCategories = new String[]{"Fruits", "Popular Artists", "Computer Science"};
