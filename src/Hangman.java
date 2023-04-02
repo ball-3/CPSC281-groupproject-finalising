@@ -53,7 +53,7 @@ public class Hangman extends JFrame implements ActionListener {
     }
 
     public void createGUI() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Font defult = new Font("MS Comic Sans", Font.BOLD, 35);
 
         mainPanel = new JPanel(new BorderLayout());
