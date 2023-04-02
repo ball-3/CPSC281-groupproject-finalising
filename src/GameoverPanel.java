@@ -15,6 +15,8 @@ public class GameoverPanel extends JPanel {
         setBackground(Color.BLUE);
         setPreferredSize(new Dimension(1000, 650));
         JButton restart = new JButton("menu");
+        restart.setBackground(Main.c4);
+        restart.setForeground(Main.c3);
         restart.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
 
