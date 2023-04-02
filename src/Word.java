@@ -40,10 +40,11 @@ public class Word {
         category.add(computer_science);
         generateNewRandomWord(wordCategory);
         if (limitMistake == 0) limitMistake = -1;
-        System.out.println("limitmistake" + limitMistake);
+        System.out.println("limitmistake " + limitMistake);
         System.out.println("limit is " + limitMistake);
         stepSize = 27 / limitMistake;
         nextState = 27 % limitMistake;
+        this.limitMistake = limitMistake;
     }
 
     public int hangmanState() {
@@ -101,7 +102,7 @@ public class Word {
         }
         if (send.size() == 0)
             wrongInput.insert(c);
-        if (wrongInput.getSize()>=limitMistake){
+        if (wrongInput.getSize()>limitMistake){
             gameOver = true;
         }
 
