@@ -14,6 +14,7 @@ public class Word {
     private boolean gameOver = false;
     private static String[] chosenWordCategory;
 
+
     public String getWrongInput() {
         return wrongInput.toString();
     }
@@ -34,7 +35,7 @@ public class Word {
         String[] popular_artist = { "popular artist", "taylor swift", "billie eilish", "ariana grande", "adele",
                 "olivia rodrigo", "dua lipa", "harry styles" };
         String[] computer_science = { "computer science", "linked list", "skip list", "recursion", "queues", "stack",
-                "heap", "AVL tree", "warshalls algorithm", "floyd's algorithm" };
+                "heap", "avl tree", "warshalls algorithm", "floyds algorithm" };
         category.add(fruit);
         category.add(popular_artist);
         category.add(computer_science);
