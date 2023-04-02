@@ -7,7 +7,7 @@ public class Game {
 
     Word word;
     String inputString;
-    Hangman man;
+    static Hangman man;
     int[] gamemode;
 
     JTextField textField;
@@ -18,6 +18,7 @@ public class Game {
 
         if (gamemode[1] == 0)     //picker is computer
         {
+
             word = new Word(gamemode[3], gamemode[4]);
             startGame(true);
         }
@@ -106,4 +107,5 @@ public class Game {
             startGame(false);
         }
     }
+
 }

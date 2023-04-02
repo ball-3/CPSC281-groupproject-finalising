@@ -9,10 +9,9 @@ public class ComputerGuesser extends Player{
     Random rand;
     ArrayList<Letter> listOfGuessedLetters;
 
-    public ComputerGuesser(){
+    public ComputerGuesser(boolean isComputerPicker){
         listOfGuessedLetters = new ArrayList<>();
-        //TODO: need a way for computer guesser to tell if computer is picker
-        bigramGraph = new BigramGraph(true);
+        bigramGraph = new BigramGraph(isComputerPicker);
         currentLetter = null;
         letterToGuess = null;
         nextLetterToGuess = null;
@@ -129,7 +128,7 @@ public class ComputerGuesser extends Player{
 
 
     public void getNewLetterToGuess(){
-        int index = rand.nextInt(bigramGraph.listOfLetters.size() - 1);
+        int index = rand.nextInt(bigramGraph.listOfLetters.size());
 
         Letter letter = bigramGraph.listOfLetters.get(index);
         currentLetter = letter;
