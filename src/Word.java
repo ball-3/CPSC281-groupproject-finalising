@@ -108,8 +108,11 @@ public class Word {
 
         indexes = send;
         if (send.size() == 0){
+            if (wrongInput.getRoot()==null|| wrongInput.contains(c)==null){
             wrongInput.insert(c);
             numMistakes++;
+            }
+            System.out.println(wrongInput.getRoot().iData);
 
             System.out.println("Number of mistakes: " + numMistakes + "\n Limit of Mistakes: " + limitMistake);
         }
