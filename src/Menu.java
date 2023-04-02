@@ -214,7 +214,6 @@ public class Menu implements ActionListener
                                 public void stateChanged(ChangeEvent e) {
                                         JSlider source = (JSlider)e.getSource();
                                         if (!source.getValueIsAdjusting()) {
-                                                System.out.println(source.getValue());
                                                 gamemode[3] = (int)source.getValue();
                                         }
                                 }
