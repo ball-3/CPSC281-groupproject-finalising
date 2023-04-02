@@ -331,11 +331,13 @@ class AVL {
             if (Character.compare(id, current.iData) < 0) {
                 current.leftChild = newNode;
                 newNode.parent = current;
+                System.out.println("L");
                 RorL.push('L');
                 size++;
             } else {
                 current.rightChild = newNode;
                 newNode.parent = current;
+                System.out.println("R");
                 RorL.push('R');
                 size++;
             }
@@ -352,13 +354,20 @@ class AVL {
             if (A != null) {
 
                 if (A.getBf() > 1 || A.getBf() < -1) { // if balance factor over two
-                    String rotation = "" + RorL.peek() + RorL.peek();
+                    char temp1 = RorL.pop();
+                    char temp2 = RorL.pop();
+                    String rotation = "" + temp1 + temp2;
+                    RorL.push(temp2);
+                    RorL.push(temp1);
+                    
 
                     switch (rotation) {
                         case "RR":
+                        System.out.println("RR");
                             LLorRR(A, 'R');
                             break;
                         case "LL":
+                        System.out.println("LL");
                             LLorRR(A, 'L');
 
                             break;
@@ -412,6 +421,11 @@ class AVL {
 
     //rotation
     private void LLorRR(Node a, char type) {
+        System.out.println(a.iData);
+        if (a.leftChild!=null)
+        System.out.println("left "+a.leftChild.iData);
+        if (a.rightChild!=null)
+        System.out.println("right "+a.rightChild.iData);
         Node b;
         Node bl;
         Node br;
