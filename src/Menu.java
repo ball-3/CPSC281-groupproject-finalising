@@ -199,7 +199,7 @@ public class Menu implements ActionListener
                 components[2][2] = buttons[4];
                 components[3][0] = textFields[3];
 
-                        JSlider slider = new JSlider(0,27,gamemode[3]);
+                        JSlider slider = new JSlider(0,26,gamemode[3]);
                         slider.setPreferredSize(new Dimension(400,50));
                         slider.setMajorTickSpacing(5);
                         slider.setMinorTickSpacing(1);
@@ -258,7 +258,7 @@ public class Menu implements ActionListener
             0               null                        null
             1       if player1 is human/computer        0 - computer, 1 - human     note: player1 is always picker.
             2       if player2 is human/computer        0 - computer, 1 - human
-            3       # of mistakes allowed               27 - zero mistakes, ... 0 - 27 mistakes
+            3       # of mistakes allowed               0 - zero mistakes, ... 27 - 27 mistakes
             4       word category                       0 - fruit, 1 - popular artists, 2 - computer science
             5               null so far
     */
@@ -275,7 +275,6 @@ public class Menu implements ActionListener
 
                 if (actionCommand == "start")
                 {
-                        //TODO delete old jframe frame.dispose()
                         gamemode[4] = listener.getItem();
                         game = new Game(gamemode, panel,backButton);
                 }
@@ -290,25 +289,27 @@ public class Menu implements ActionListener
                 else if (actionCommand == "p1human")
                 {
                         gamemode[1] = 1;
+                        gamemode[4] = listener.getItem();
                         makeSettingsPanel();
                 }
                 else if (actionCommand == "p1computer")
                 {
                         gamemode[1] = 0;
+                        gamemode[4] = listener.getItem();
                         makeSettingsPanel();
                 }
                 else if (actionCommand == "p2human")
                 {
                         gamemode[2] = 1;
+                        gamemode[4] = listener.getItem();
                         makeSettingsPanel();
                 }
                 else if (actionCommand == "p2computer")
                 {
                         gamemode[2] = 0;
+                        gamemode[4] = listener.getItem();
                         makeSettingsPanel();
                 }
-                //TODO in rikos gameoverpanel make going back to menu go back to menu
-
         }
 }
 

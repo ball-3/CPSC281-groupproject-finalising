@@ -18,9 +18,9 @@ public class Word {
         return wrongInput.toString();
     }
 
-    Word(int level, String word) {
+    Word(int limitMistake, String word) {
         this.word = word;
-        limitMistake = (level - 27) * -1;
+        int level = 1 + (limitMistake - 27)* -1;
         System.out.println("limit is " + limitMistake + "   level is " + level);
         stepSize = 27 / limitMistake;
         nextState = 27 % limitMistake;
