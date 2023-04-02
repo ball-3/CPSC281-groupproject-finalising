@@ -19,17 +19,16 @@ public class Word {
         return wrongInput.toString();
     }
 
-    Word(int level, String word) {
+    Word(int limitMistake, String word) {
         this.word = word;
-        limitMistake = (level - 27) * -1;
         if (limitMistake == 0) limitMistake = -1;
         System.out.println("limitmistake" + limitMistake);
-        System.out.println("limit is " + limitMistake + "   level is " + level);
+        System.out.println("limit is " + limitMistake);
         stepSize = 27 / limitMistake;
         nextState = 27 % limitMistake;
     }
 
-    Word(int level, int wordCategory) {
+    Word(int limitMistake, int wordCategory) {
 
         String[] fruit = { "fruit", "apple", "banana", "blueberry", "orange", "mango", "lychee" };
         String[] popular_artist = { "popular artist", "taylor swift", "billie eilish", "ariana grande", "adele",
@@ -40,10 +39,9 @@ public class Word {
         category.add(popular_artist);
         category.add(computer_science);
         generateNewRandomWord(wordCategory);
-        limitMistake = (level - 27) * -1;
         if (limitMistake == 0) limitMistake = -1;
         System.out.println("limitmistake" + limitMistake);
-        System.out.println("limit is " + limitMistake + "   level is " + level);
+        System.out.println("limit is " + limitMistake);
         stepSize = 27 / limitMistake;
         nextState = 27 % limitMistake;
     }

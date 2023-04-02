@@ -28,7 +28,7 @@ public class Game {
         if (gamemode[1] == 0)     //picker is computer
         {
             System.out.println("Number of mistakes allowed:" + gamemode[3]);
-            word = new Word((gamemode[3]-28)*-1, gamemode[4]);
+            word = new Word(gamemode[3], gamemode[4]);
 
             startGame(true);
         }
