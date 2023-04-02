@@ -32,6 +32,7 @@ public class Game {
 
     private void startGame()
     {
+        //added boolean
         if (gamemode[2] == 0)      //guesser is computer
         {
 
