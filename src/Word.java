@@ -8,7 +8,7 @@ public class Word {
     private String categoryName;
     private int CharNum;
     // use for hangman
-    private int limitMistake;
+    private final int limitMistake;
     private int stepSize;
     private int nextState = 0; // hangman drawing state
     private boolean gameOver = false;
@@ -26,7 +26,7 @@ public class Word {
         System.out.println("limit is " + limitMistake);
         stepSize = 27 / limitMistake;
         nextState = 27 % limitMistake;
-        //this.limitMistake = limitMistake;
+        this.limitMistake = limitMistake;
     }
 
     Word(int limitMistake, int wordCategory) {
