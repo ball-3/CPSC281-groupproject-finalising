@@ -53,7 +53,7 @@ public class Hangman extends JFrame implements ActionListener {
     }
 
     public void createGUI() {
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//user can restart the game if user close the play frame (hangman)
         Font defult = new Font("MS Comic Sans", Font.BOLD, 35);
 
         mainPanel = new JPanel(new BorderLayout());
@@ -163,6 +163,7 @@ public class Hangman extends JFrame implements ActionListener {
         ArrayList<Integer> matchedIndexes = w.indexesOfCharacter(c);
         boolean changed = false;
         System.out.println(matchedIndexes);
+        //running time is short enough because size of machedIndex (depend on the word but usually max of 4)*word length
         if (matchedIndexes.size() != 0) {
 
             for (int i = 0; i < matchedIndexes.size(); i++) {
@@ -195,7 +196,7 @@ public class Hangman extends JFrame implements ActionListener {
     }
 
 }
-
+//this class enable to limit user input
 class JTextFieldLimit extends PlainDocument {
 
     private int limit;
