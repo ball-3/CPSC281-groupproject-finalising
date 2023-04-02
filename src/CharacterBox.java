@@ -7,7 +7,7 @@ public class CharacterBox extends JComponent {
     private boolean isGuessed = false;
 
     public CharacterBox(char c) {
-        setPreferredSize(new Dimension(40, 40));
+        setPreferredSize(new Dimension(47, 47));
         boxWord = c;
         if (c == ' ')
             isGuessed = true;
@@ -23,7 +23,7 @@ public class CharacterBox extends JComponent {
             g2.setColor(Main.c1);
             g2.drawString(String.valueOf(boxWord), 15, 30);
         } else {
-            g2.fillRect(0, 0, 40, 40);
+            g2.fillRect(0, 0, 45, 45);
 
         }
     }

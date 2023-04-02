@@ -199,7 +199,7 @@ public class Menu implements ActionListener
                 components[2][2] = buttons[4];
                 components[3][0] = textFields[3];
 
-                        JSlider slider = new JSlider(0,27,gamemode[3]);
+                        JSlider slider = new JSlider(0,26,gamemode[3]);
                         slider.setPreferredSize(new Dimension(400,50));
                         slider.setMajorTickSpacing(5);
                         slider.setMinorTickSpacing(1);
