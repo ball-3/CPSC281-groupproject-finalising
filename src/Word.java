@@ -26,7 +26,7 @@ public class Word {
         System.out.println("limit is " + limitMistake);
         stepSize = 27 / limitMistake;
         nextState = 27 % limitMistake;
-        this.limitMistake = limitMistake;
+        //this.limitMistake = limitMistake;
     }
 
     Word(int limitMistake, int wordCategory) {
