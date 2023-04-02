@@ -23,6 +23,7 @@ public class Game {
             startGame(true);
         }
 
+        // comment
         else if (gamemode[1] == 1)      //picker is human
         {
             makePickWordPanel(panel);
