@@ -7,6 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+/**
+ * Menu Class as part of the Hangman Project
+ *
+ * Menu handles GUI for the menu and settings screens, starts an appropriate Game object when necessary,
+ * and holds the code for the settings menu.
+ */
 public class Menu implements ActionListener
 {
         Game game;
@@ -14,6 +20,7 @@ public class Menu implements ActionListener
         GridBagConstraints constraints;
         JButton startButton;
         JButton settingsButton;
+        JButton backButton;
         JTextField title;
         Font butttonFont = new Font("Arial Bold", 0, 48);
         Font fontTwo = new Font("Arial Bold", 0, 16);
@@ -50,7 +57,7 @@ public class Menu implements ActionListener
 
                 constraints = new GridBagConstraints();
                 panel.removeAll();
-                panel.setBackground(Main.c3);
+                panel.setBackground(Main.c2);
                 panel.setLayout(new GridBagLayout());
 
                 setupTitle();
@@ -77,17 +84,49 @@ public class Menu implements ActionListener
                 panel.setVisible(true);
         }
 
+        private void setupTitle()
+        {
+                title = new JTextField();
+                title.setEditable(false);
+                title.setFont(new Font("Arial Bold", 0, 98));
+                title.setText("Hangman");
+                title.setBorder(null);
+                title.setBackground(Main.c2);
+                title.setForeground(Main.c3);
+        }
+
+        private void setupButtons()
+        {
+                startButton = new JButton();
+                startButton.addActionListener(this);
+                startButton.setActionCommand("start");
+                startButton.setFont(butttonFont);
+                startButton.setPreferredSize(new Dimension(500,140));
+                startButton.setText("Start");
+                startButton.setBorder(null);
+                startButton.setBackground(Main.c3);
+                startButton.setForeground(Main.c4);
+
+                settingsButton = new JButton();
+                settingsButton.addActionListener(this);
+                settingsButton.setActionCommand("settings");
+                settingsButton.setFont(butttonFont);
+                settingsButton.setPreferredSize(new Dimension(500,140));
+                settingsButton.setText("Settings");
+                settingsButton.setBorder(null);
+                settingsButton.setBackground(Main.c3);
+                settingsButton.setForeground(Main.c4);
+        }
+
         private void makeSettingsPanel()
         {
                 panel.setVisible(false);
-                //TODO make components array more dynamic ?
-                //TODO make buttons array more dynamic ?
                 JComponent[][] components = new JComponent[5][4];       //five rows, four columns (three buttons + one title)
                 constraints = new GridBagConstraints();
 
                 panel.removeAll();
                 panel.setLayout(new GridBagLayout());
-                panel.setBackground(Main.c3);
+                panel.setBackground(Main.c2);
                 setupSettingsComponents(components);
 
                 panel.setVisible(true);
@@ -103,36 +142,33 @@ public class Menu implements ActionListener
                         buttons[i] = new JButton();
                         buttons[i].addActionListener(this);
                         buttons[i].setFont(fontTwo);
-                        buttons[i].setBackground(Main.c5);
+                        buttons[i].setBackground(Main.c3);
+                        buttons[i].setForeground(Main.c4);
+                        buttons[i].setBorder(null);
                         buttons[i].setPreferredSize(new Dimension(200,50));
                 }
                 buttons[0].setPreferredSize(new Dimension(100,50));
-                buttons[0].setBackground(Main.c2);
+                buttons[0].setBackground(Main.c3);
                 buttons[0].setActionCommand("back");
                 buttons[0].setText("Back");
+                backButton = buttons[0];
+
                 buttons[1].setActionCommand("p1human");
                 buttons[1].setText("Human");
-                if (gamemode[1] == 1) buttons[1].setBackground(Main.c2);
+                if (gamemode[1] == 1) buttons[1].setBackground(Main.c1);
+
                 buttons[2].setActionCommand("p1computer");
                 buttons[2].setText("Computer");
-                if (gamemode[1] == 0) buttons[2].setBackground(Main.c2);
+                if (gamemode[1] == 0) buttons[2].setBackground(Main.c1);
+
                 buttons[3].setActionCommand("p2human");
                 buttons[3].setText("Human");
-                if (gamemode[2] == 1) buttons[3].setBackground(Main.c2);
+                if (gamemode[2] == 1) buttons[3].setBackground(Main.c1);
+
                 buttons[4].setActionCommand("p2computer");
                 buttons[4].setText("Computer");
-                if (gamemode[2] == 0) buttons[4].setBackground(Main.c2);
+                if (gamemode[2] == 0) buttons[4].setBackground(Main.c1);
 
-                //TODO make this a jcombobox
-//                buttons[5].setActionCommand("fruit");
-//                buttons[5].setText("Fruits");
-//                if (gamemode[4] == 0) buttons[5].setBackground(Color.GREEN);
-//                buttons[6].setActionCommand("popart");
-//                buttons[6].setText("Popular Artists");
-//                if (gamemode[4] == 1) buttons[6].setBackground(Color.GREEN);
-//                buttons[7].setActionCommand("cpsc");
-//                buttons[7].setText("Computer Science");
-//                if (gamemode[4] == 2) buttons[7].setBackground(Color.GREEN);
                 buttons[5].setVisible(false);
                 buttons[6].setVisible(false);
                 buttons[7].setVisible(false);
@@ -142,7 +178,8 @@ public class Menu implements ActionListener
                         textFields[i] = new JTextField();
                         textFields[i].setEditable(false);
                         textFields[i].setFont(fontTwo);
-                        textFields[i].setBackground(Main.c3);
+                        textFields[i].setBackground(Main.c2);
+                        textFields[i].setForeground(Main.c4);
                         textFields[i].setBorder(null);
                 }
                 textFields[0].setFont(new Font("Arial Bold", 0, 38));
@@ -161,35 +198,39 @@ public class Menu implements ActionListener
                 components[2][1] = buttons[3];
                 components[2][2] = buttons[4];
                 components[3][0] = textFields[3];
-                JSlider slider = new JSlider(0,27,gamemode[3]);
-                components[3][1] = slider;
-                slider.setPreferredSize(new Dimension(400,50));
-                slider.setMajorTickSpacing(5);
-                slider.setMinorTickSpacing(1);
-                slider.setPaintTicks(true);
-                slider.setPaintLabels(true);
-                slider.createStandardLabels(1);
-                slider.setBackground(Main.c3);
-                slider.setValue(gamemode[3]);
-                slider.addChangeListener(new ChangeListener() {
-                        @Override
-                        public void stateChanged(ChangeEvent e) {
-                                JSlider source = (JSlider)e.getSource();
-                                if (!source.getValueIsAdjusting()) {
-                                        System.out.println(source.getValue());
-                                        gamemode[3] = (int)source.getValue();
+
+                        JSlider slider = new JSlider(0,27,gamemode[3]);
+                        slider.setPreferredSize(new Dimension(400,50));
+                        slider.setMajorTickSpacing(5);
+                        slider.setMinorTickSpacing(1);
+                        slider.setPaintTicks(true);
+                        slider.setPaintLabels(true);
+                        slider.createStandardLabels(1);
+                        slider.setBackground(Main.c2);
+                        slider.setForeground(Main.c4);
+                        slider.setValue(gamemode[3]);
+                        slider.addChangeListener(new ChangeListener() {
+                                @Override
+                                public void stateChanged(ChangeEvent e) {
+                                        JSlider source = (JSlider)e.getSource();
+                                        if (!source.getValueIsAdjusting()) {
+                                                System.out.println(source.getValue());
+                                                gamemode[3] = (int)source.getValue();
+                                        }
                                 }
-                        }
-                });
+                        });
+                components[3][1] = slider;
+
                 components[4][0] = textFields[4];
-                JComboBox categoryBox = new JComboBox(wordCategories);
-                categoryBox.setPreferredSize(new Dimension(200,50));
-                categoryBox.addItemListener(listener);
-                categoryBox.setSelectedIndex(gamemode[4]);
+
+                        JComboBox categoryBox = new JComboBox(wordCategories);
+                        categoryBox.setPreferredSize(new Dimension(200,50));
+                        categoryBox.addItemListener(listener);
+                        categoryBox.setSelectedIndex(gamemode[4]);
+                        categoryBox.setBackground(Main.c3);
+                        categoryBox.setForeground(Main.c4);
                 components[4][1] = categoryBox;
-//                components[4][1] = buttons[5];
-//                components[4][2] = buttons[6];
-//                components[4][3] = buttons[7];
+
                 constraints.weightx = 0.7/components[0].length;
                 constraints.weighty = 0.8/components.length;
                 for (int i = 0; i < components.length; i++)
@@ -211,35 +252,6 @@ public class Menu implements ActionListener
                 }
         }
 
-        private void setupTitle()
-        {
-                title = new JTextField();
-                title.setEditable(false);
-                title.setFont(new Font("Arial Bold", 0, 98));
-                //title.setPreferredSize(new Dimension(700,260));
-                title.setText("Hangman");
-                title.setBorder(null);
-                title.setBackground(Main.c3);
-        }
-
-        private void setupButtons()
-        {
-                startButton = new JButton();
-                startButton.addActionListener(this);
-                startButton.setActionCommand("start");
-                startButton.setFont(butttonFont);
-                startButton.setPreferredSize(new Dimension(500,140));
-                startButton.setText("Start");
-                startButton.setBackground(Main.c2);
-
-                settingsButton = new JButton();
-                settingsButton.addActionListener(this);
-                settingsButton.setActionCommand("settings");
-                settingsButton.setFont(butttonFont);
-                settingsButton.setPreferredSize(new Dimension(500,140));
-                settingsButton.setText("Settings");
-                settingsButton.setBackground(Main.c2);
-        }
     /*
     Gamemode Settings:
     Array Index:    Information Stored Here:        Equivalence to Int Value:
@@ -265,7 +277,7 @@ public class Menu implements ActionListener
                 {
                         //TODO delete old jframe frame.dispose()
                         gamemode[4] = listener.getItem();
-                        game = new Game(gamemode, panel);
+                        game = new Game(gamemode, panel,backButton);
                 }
                 else if (actionCommand == "settings")
                 {
@@ -295,21 +307,6 @@ public class Menu implements ActionListener
                         gamemode[2] = 0;
                         makeSettingsPanel();
                 }
-//                else if (actionCommand == "fruit")
-//                {
-//                        gamemode[4] = 0;
-//                        makeSettingsPanel();
-//                }
-//                else if (actionCommand == "popart")
-//                {
-//                        gamemode[4] = 1;
-//                        makeSettingsPanel();
-//                }
-//                else if (actionCommand == "cpsc")
-//                {
-//                        gamemode[4] = 2;
-//                        makeSettingsPanel();
-//                }
                 //TODO in rikos gameoverpanel make going back to menu go back to menu
 
         }
