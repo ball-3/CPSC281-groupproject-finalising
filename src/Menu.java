@@ -24,6 +24,7 @@ public class Menu implements ActionListener
         int[] gamemode = new int[/*size of number of gamemode options*/5];
         JButton[] buttons;
         String[] wordCategories;
+        ThisListener listener = new ThisListener();
 
         //frame 1000 by 800
         public Menu()
@@ -185,12 +186,11 @@ public class Menu implements ActionListener
                 components[4][0] = textFields[4];
                 JComboBox categoryBox = new JComboBox(wordCategories);
                 categoryBox.setPreferredSize(new Dimension(200,50));
-                categoryBox.addItemListener(new ThisListener());
+                categoryBox.addItemListener(listener);
                 components[4][1] = categoryBox;
 //                components[4][1] = buttons[5];
 //                components[4][2] = buttons[6];
 //                components[4][3] = buttons[7];
-                //TODO more constraints here ?
                 constraints.weightx = 0.7/components[0].length;
                 constraints.weighty = 0.8/components.length;
                 for (int i = 0; i < components.length; i++)
@@ -264,6 +264,7 @@ public class Menu implements ActionListener
                 if (actionCommand == "start")
                 {
                         //TODO delete old jframe frame.dispose()
+                        gamemode[4] = listener.getItem();
                         game = new Game(gamemode, panel);
                 }
                 else if (actionCommand == "settings")
@@ -319,9 +320,12 @@ class ThisListener implements ItemListener {
 
         String item;
 
-        public String getItem()
+        public int getItem()
         {
-                return item;
+                if (item.equals("Fruits"))      return 0;
+                if (item.equals("Popular Artists"))     return 1;
+                if (item.equals("Computer Science"))    return 2;
+                return 0;
         }
 
         @Override
