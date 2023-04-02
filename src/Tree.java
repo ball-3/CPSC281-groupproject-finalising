@@ -110,12 +110,6 @@ class AVL {
     public void insert(char id) {
 
 
-        // if (root != null && contains(id) != null) {
-        //     System.out.println("you already have " + id);
-        //     return;
-        // }
-
-
         Node newNode = new Node();    // make new node
         newNode.iData = id;           // insert data
         if (root == null) {              // if no node in root, new node is the root
