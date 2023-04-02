@@ -275,7 +275,6 @@ public class Menu implements ActionListener
 
                 if (actionCommand == "start")
                 {
-                        //TODO delete old jframe frame.dispose()
                         gamemode[4] = listener.getItem();
                         game = new Game(gamemode, panel,backButton);
                 }
@@ -290,25 +289,27 @@ public class Menu implements ActionListener
                 else if (actionCommand == "p1human")
                 {
                         gamemode[1] = 1;
+                        gamemode[4] = listener.getItem();
                         makeSettingsPanel();
                 }
                 else if (actionCommand == "p1computer")
                 {
                         gamemode[1] = 0;
+                        gamemode[4] = listener.getItem();
                         makeSettingsPanel();
                 }
                 else if (actionCommand == "p2human")
                 {
                         gamemode[2] = 1;
+                        gamemode[4] = listener.getItem();
                         makeSettingsPanel();
                 }
                 else if (actionCommand == "p2computer")
                 {
                         gamemode[2] = 0;
+                        gamemode[4] = listener.getItem();
                         makeSettingsPanel();
                 }
-                //TODO in rikos gameoverpanel make going back to menu go back to menu
-
         }
 }
 
