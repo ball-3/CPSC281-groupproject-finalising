@@ -98,7 +98,7 @@ public class Word {
         }
         if (send.size() == 0)
             wrongInput.insert(c);
-        if (wrongInput.getSize()>limitMistake){
+        if (wrongInput.getSize()>=limitMistake){
             gameOver = true;
         }
 
