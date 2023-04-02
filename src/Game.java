@@ -27,7 +27,7 @@ public class Game {
 
         if (gamemode[1] == 0)     //picker is computer
         {
-            word = new Word(gamemode[3], gamemode[4]);
+            word = new Word((gamemode[3]-27)*-1, gamemode[4]);
             startGame(true);
         }
 
