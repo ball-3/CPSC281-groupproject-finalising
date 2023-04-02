@@ -12,7 +12,7 @@ public class BigramGraph {
         this.isCompPicker = isCompPicker;
         if(isCompPicker){
             // if yes then the computer will be
-            chosenCategory = Player.word.getChosenWordCategory();
+            chosenCategory = Word.getChosenWordCategory();
             generateSmartBigramGraph(chosenCategory);
         }else{
             generateNormalBigramGraph();
@@ -150,18 +150,9 @@ public class BigramGraph {
                 if(word.charAt(j) != ' ' && word.charAt(j+1) != ' '){
                     totalFrequencies.get(word.charAt(j)).put(word.charAt(j+1),
                             totalFrequencies.get(word.charAt(j)).get(word.charAt(j+1)) + 1) ;
-                }else{
-                    j++;
                 }
-
             }
 
-            char l = word.charAt(0);
-
-            // list of first letters to guess from
-            if(!listOfFirstLetters.contains(l)){
-                listOfFirstLetters.add(l);
-            }
         }
 
         // print graph:
