@@ -258,7 +258,7 @@ public class Menu implements ActionListener
             0               null                        null
             1       if player1 is human/computer        0 - computer, 1 - human     note: player1 is always picker.
             2       if player2 is human/computer        0 - computer, 1 - human
-            3       # of mistakes allowed               27 - zero mistakes, ... 0 - 27 mistakes
+            3       # of mistakes allowed               0 - zero mistakes, ... 27 - 27 mistakes
             4       word category                       0 - fruit, 1 - popular artists, 2 - computer science
             5               null so far
     */
