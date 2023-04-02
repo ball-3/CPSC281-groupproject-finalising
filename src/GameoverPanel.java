@@ -17,7 +17,7 @@ public class GameoverPanel extends JPanel {
         JButton restart = new JButton("menu");
         restart.addActionListener((ActionListener) new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                // new frame??
+
 
             }
 

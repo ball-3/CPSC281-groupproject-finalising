@@ -9,30 +9,27 @@ import java.awt.event.ItemListener;
 
 public class Menu implements ActionListener
 {
+        Game game;
         JPanel panel;
         GridBagConstraints constraints;
         JButton startButton;
         JButton settingsButton;
-        //could be swapped for an image for fancier menu
         JTextField title;
         Font butttonFont = new Font("Arial Bold", 0, 48);
         Font fontTwo = new Font("Arial Bold", 0, 16);
-        Color background = UIManager.getColor("Panel.background");
-        Game game;
+
         String actionCommand;
-        //should have some kind of documentation for the gamemode options and the associated numbers
         int[] gamemode = new int[/*size of number of gamemode options*/5];
         JButton[] buttons;
         String[] wordCategories;
         ThisListener listener = new ThisListener();
 
-        //frame 1000 by 800
         public Menu()
         {
                 panel = new JPanel();
 
                 //default settings:
-                gamemode[1] = 1;
+                gamemode[1] = 0;
                 gamemode[2] = 0;
                 gamemode[3] = 0;
                 gamemode[4] = 0;
@@ -53,7 +50,7 @@ public class Menu implements ActionListener
 
                 constraints = new GridBagConstraints();
                 panel.removeAll();
-                panel.setBackground(background);
+                panel.setBackground(Main.c3);
                 panel.setLayout(new GridBagLayout());
 
                 setupTitle();
@@ -90,7 +87,7 @@ public class Menu implements ActionListener
 
                 panel.removeAll();
                 panel.setLayout(new GridBagLayout());
-                panel.setBackground(Color.LIGHT_GRAY);
+                panel.setBackground(Main.c3);
                 setupSettingsComponents(components);
 
                 panel.setVisible(true);
@@ -106,25 +103,25 @@ public class Menu implements ActionListener
                         buttons[i] = new JButton();
                         buttons[i].addActionListener(this);
                         buttons[i].setFont(fontTwo);
-                        buttons[i].setBackground(Color.GRAY);
+                        buttons[i].setBackground(Main.c5);
                         buttons[i].setPreferredSize(new Dimension(200,50));
                 }
                 buttons[0].setPreferredSize(new Dimension(100,50));
-                buttons[0].setBackground(background);
+                buttons[0].setBackground(Main.c2);
                 buttons[0].setActionCommand("back");
                 buttons[0].setText("Back");
                 buttons[1].setActionCommand("p1human");
                 buttons[1].setText("Human");
-                if (gamemode[1] == 1) buttons[1].setBackground(Color.GREEN);
+                if (gamemode[1] == 1) buttons[1].setBackground(Main.c2);
                 buttons[2].setActionCommand("p1computer");
                 buttons[2].setText("Computer");
-                if (gamemode[1] == 0) buttons[2].setBackground(Color.GREEN);
+                if (gamemode[1] == 0) buttons[2].setBackground(Main.c2);
                 buttons[3].setActionCommand("p2human");
                 buttons[3].setText("Human");
-                if (gamemode[2] == 1) buttons[3].setBackground(Color.GREEN);
+                if (gamemode[2] == 1) buttons[3].setBackground(Main.c2);
                 buttons[4].setActionCommand("p2computer");
                 buttons[4].setText("Computer");
-                if (gamemode[2] == 0) buttons[4].setBackground(Color.GREEN);
+                if (gamemode[2] == 0) buttons[4].setBackground(Main.c2);
 
                 //TODO make this a jcombobox
 //                buttons[5].setActionCommand("fruit");
@@ -145,7 +142,8 @@ public class Menu implements ActionListener
                         textFields[i] = new JTextField();
                         textFields[i].setEditable(false);
                         textFields[i].setFont(fontTwo);
-                        textFields[i].setBackground(Color.LIGHT_GRAY);
+                        textFields[i].setBackground(Main.c3);
+                        textFields[i].setBorder(null);
                 }
                 textFields[0].setFont(new Font("Arial Bold", 0, 38));
                 textFields[0].setText("Settings");
@@ -171,7 +169,7 @@ public class Menu implements ActionListener
                 slider.setPaintTicks(true);
                 slider.setPaintLabels(true);
                 slider.createStandardLabels(1);
-                slider.setBackground(Color.LIGHT_GRAY);
+                slider.setBackground(Main.c3);
                 slider.setValue(gamemode[3]);
                 slider.addChangeListener(new ChangeListener() {
                         @Override
@@ -187,6 +185,7 @@ public class Menu implements ActionListener
                 JComboBox categoryBox = new JComboBox(wordCategories);
                 categoryBox.setPreferredSize(new Dimension(200,50));
                 categoryBox.addItemListener(listener);
+                categoryBox.setSelectedIndex(gamemode[4]);
                 components[4][1] = categoryBox;
 //                components[4][1] = buttons[5];
 //                components[4][2] = buttons[6];
@@ -219,7 +218,8 @@ public class Menu implements ActionListener
                 title.setFont(new Font("Arial Bold", 0, 98));
                 //title.setPreferredSize(new Dimension(700,260));
                 title.setText("Hangman");
-                title.setBackground(background);
+                title.setBorder(null);
+                title.setBackground(Main.c3);
         }
 
         private void setupButtons()
@@ -230,6 +230,7 @@ public class Menu implements ActionListener
                 startButton.setFont(butttonFont);
                 startButton.setPreferredSize(new Dimension(500,140));
                 startButton.setText("Start");
+                startButton.setBackground(Main.c2);
 
                 settingsButton = new JButton();
                 settingsButton.addActionListener(this);
@@ -237,9 +238,8 @@ public class Menu implements ActionListener
                 settingsButton.setFont(butttonFont);
                 settingsButton.setPreferredSize(new Dimension(500,140));
                 settingsButton.setText("Settings");
+                settingsButton.setBackground(Main.c2);
         }
-
-        //there will be other methods here
     /*
     Gamemode Settings:
     Array Index:    Information Stored Here:        Equivalence to Int Value:
@@ -258,9 +258,9 @@ public class Menu implements ActionListener
 
         @Override
         public void actionPerformed(ActionEvent e) {
-                //set/ get actioncommand ?
-                //TODO have flags so that checking actioncommand is more effecient, via char array or something
+
                 actionCommand = e.getActionCommand();
+
                 if (actionCommand == "start")
                 {
                         //TODO delete old jframe frame.dispose()
@@ -278,7 +278,6 @@ public class Menu implements ActionListener
                 else if (actionCommand == "p1human")
                 {
                         gamemode[1] = 1;
-                        //TODO do i want this and if so dew it
                         makeSettingsPanel();
                 }
                 else if (actionCommand == "p1computer")
@@ -318,7 +317,7 @@ public class Menu implements ActionListener
 
 class ThisListener implements ItemListener {
 
-        String item;
+        String item = "";
 
         public int getItem()
         {

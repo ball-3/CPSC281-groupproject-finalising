@@ -7,7 +7,7 @@ public class Game {
 
     Word word;
     String inputString;
-    static Hangman man;
+    Hangman man;
     int[] gamemode;
 
     JTextField textField;
@@ -18,29 +18,27 @@ public class Game {
 
         if (gamemode[1] == 0)     //picker is computer
         {
-
             word = new Word(gamemode[3], gamemode[4]);
             startGame(true);
         }
 
-        // comment
         else if (gamemode[1] == 1)      //picker is human
         {
             makePickWordPanel(panel);
         }
     }
 
-    private void startGame(boolean isComputerPicker)
+    private void startGame(boolean iCP)
     {
         if (gamemode[2] == 0)      //guesser is computer
         {
 
-            man = new Hangman(word, true, isComputerPicker);
+            man = new Hangman(word, true, iCP);
         }
 
         else if (gamemode[2] == 1)      //guesser is human
         {
-            man = new Hangman(word,false, isComputerPicker);
+            man = new Hangman(word,false, iCP);
         }
         formatHangman();
     }
@@ -62,13 +60,14 @@ public class Game {
 
         panel.removeAll();
         panel.setLayout(new GridBagLayout());
-        panel.setBackground(Color.LIGHT_GRAY);
+        panel.setBackground(Main.c3);
 
         JTextField title = new JTextField();
         title.setFont(new Font("Arial Bold", 0, 46));
         title.setEditable(false);
         title.setText("Please Enter a Word to be Guessed: ");
-        title.setBackground(Color.LIGHT_GRAY);
+        title.setBackground(Main.c3);
+        title.setBorder(null);
 
         textField = new JTextField(15);
         textField.setFont(fontTwo);
@@ -78,6 +77,7 @@ public class Game {
         button.addActionListener(new thisListener());
         button.setFont(fontTwo);
         button.setText("Submit");
+        button.setBackground(Main.c1);
         button.setPreferredSize(new Dimension(200,50));
 
         constraints.gridwidth = 3;
@@ -108,5 +108,4 @@ public class Game {
             startGame(false);
         }
     }
-
 }
