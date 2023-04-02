@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,7 +49,6 @@ public class Menu implements ActionListener
                 panel.removeAll();
                 panel.setBackground(background);
                 panel.setLayout(new GridBagLayout());
-                //insert the buttons, ?image?// title
 
                 setupTitle();
                 constraints.gridwidth = 3;
@@ -151,8 +152,25 @@ public class Menu implements ActionListener
                 components[2][1] = buttons[3];
                 components[2][2] = buttons[4];
                 components[3][0] = textFields[3];
-                components[3][1] = new JSlider(0,27,gamemode[3]);
-                //TODO change listener and get value
+                JSlider slider = new JSlider(0,27,gamemode[3]);
+                components[3][1] = slider;
+                slider.setMajorTickSpacing(5);
+                slider.setMinorTickSpacing(1);
+                slider.setPaintTicks(true);
+                slider.setPaintLabels(true);
+                slider.createStandardLabels(1);
+                slider.setBackground(Color.LIGHT_GRAY);
+                slider.setValue(gamemode[3]);
+                slider.addChangeListener(new ChangeListener() {
+                        @Override
+                        public void stateChanged(ChangeEvent e) {
+                                JSlider source = (JSlider)e.getSource();
+                                if (!source.getValueIsAdjusting()) {
+                                        System.out.println(source.getValue());
+                                        gamemode[3] = (int)source.getValue();
+                                }
+                        }
+                });
                 //TODO add header 'difficulty' over components[3]
                 components[4][0] = textFields[4];
                 components[4][1] = buttons[5];

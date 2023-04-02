@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
+
 import javax.swing.JPanel;
 
 public class CharacterBoxPanel extends JPanel {
