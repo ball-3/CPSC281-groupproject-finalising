@@ -76,10 +76,10 @@ public class Hangman extends JFrame implements ActionListener {
         textField.setPreferredSize(new Dimension(45, 45));
 
         // set color
-        mainPanel.setBackground(Color.BLACK);
-        hangmanPanel.setBackground(Color.white);
-        wrongWordPanel.setBackground(Color.white);
-        inputPanel.setBackground(Color.white);
+        mainPanel.setBackground(Main.c3);
+        hangmanPanel.setBackground(Main.c3);
+        wrongWordPanel.setBackground(Main.c3);
+        inputPanel.setBackground(Main.c3);
 
         // provide input
         button.addActionListener(new ActionListener() {
