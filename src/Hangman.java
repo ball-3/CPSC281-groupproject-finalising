@@ -23,9 +23,9 @@ public class Hangman extends JFrame implements ActionListener {
     private ComputerGuesser compGuesser;
 
 
-    Hangman(Word w, boolean iCG) {
+    Hangman(Word w, boolean iCG, boolean iCP) {
         isCompGuesser = iCG;
-        compGuesser = new ComputerGuesser();
+        compGuesser = new ComputerGuesser(iCP);
         Player.word = w;
         this.draw = new Draw(currentLevel);
         this.word = w;
@@ -76,10 +76,10 @@ public class Hangman extends JFrame implements ActionListener {
         textField.setPreferredSize(new Dimension(45, 45));
 
         // set color
-        mainPanel.setBackground(Color.BLACK);
-        hangmanPanel.setBackground(Color.white);
-        wrongWordPanel.setBackground(Color.white);
-        inputPanel.setBackground(Color.white);
+        mainPanel.setBackground(Main.c3);
+        hangmanPanel.setBackground(Main.c3);
+        wrongWordPanel.setBackground(Main.c3);
+        inputPanel.setBackground(Main.c3);
 
         // provide input
         button.addActionListener(new ActionListener() {
@@ -152,6 +152,7 @@ public class Hangman extends JFrame implements ActionListener {
         getContentPane().add(mainPanel);
 
     }
+
 
     public void guessChar(char c, Word w) {
         // includedWord will return "1,2" if word apple and character is p
