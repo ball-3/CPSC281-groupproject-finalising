@@ -12,7 +12,7 @@ public class Word {
     private int stepSize;
     private int nextState = 0; // hangman drawing state
     private boolean gameOver = false;
-    private String[] chosenWordCategory;
+    private static String[] chosenWordCategory;
 
     public String getWrongInput() {
         return wrongInput.toString();
@@ -29,10 +29,10 @@ public class Word {
     Word(int level, int wordCategory) {
 
         String[] fruit = { "fruit", "apple", "banana", "blueberry", "orange", "mango", "lychee" };
-        String[] popular_artist = { "popular artist", "Taylor Swift", "Billie Eilish", "Ariana Grande", "Adele",
-                "Olivia Rodrigo", "Dua Lipa", "Harry Styles" };
+        String[] popular_artist = { "popular artist", "taylor swift", "billie eilish", "ariana grande", "adele",
+                "olivia rodrigo", "dua lipa", "harry styles" };
         String[] computer_science = { "computer science", "linked list", "skip list", "recursion", "queues", "stack",
-                "heap", "AVL tree", "Warshalls Algorithm", "Floyd's algorithm" };
+                "heap", "AVL tree", "warshalls algorithm", "floyd's algorithm" };
         category.add(fruit);
         category.add(popular_artist);
         category.add(computer_science);
@@ -67,7 +67,7 @@ public class Word {
         return word.length();
     }
 
-    public String[] getChosenWordCategory(){
+    public static String[] getChosenWordCategory(){
         return chosenWordCategory;
     }
 

@@ -53,7 +53,7 @@ public class Hangman extends JFrame implements ActionListener {
     }
 
     public void createGUI() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Font defult = new Font("MS Comic Sans", Font.BOLD, 35);
 
         mainPanel = new JPanel(new BorderLayout());
@@ -63,8 +63,11 @@ public class Hangman extends JFrame implements ActionListener {
         JPanel inputPanel = new JPanel(new FlowLayout());
         JTextField textField = new JTextField();
         textField.setDocument(new JTextFieldLimit(1));
+        textField.setBackground(Main.c6);
         textField.setFont(defult);
         JButton button = new JButton("submit");
+        button.setBackground(Main.c2);
+        button.setForeground(Main.c3);
         wrongInput = new WrongInputJtext(word.getWrongInput());
 
         // size panel
@@ -137,6 +140,7 @@ public class Hangman extends JFrame implements ActionListener {
         // wrong input
         wrongWordPanel.setLayout(new BoxLayout(wrongWordPanel, BoxLayout.Y_AXIS));
         JLabel discription = new JLabel("Wrong input");
+        discription.setForeground(Main.c4);
         discription.setFont(defult);
         wrongWordPanel.add(discription);
         wrongWordPanel.add(wrongInput);

@@ -25,6 +25,7 @@ public class Draw extends JPanel {
         }
         //sun
         if (level > 0){
+            g2.setColor(Main.c6);
             g2.drawOval(50,10,60,60);
         }
         if (level > 1){
@@ -37,21 +38,25 @@ public class Draw extends JPanel {
 
         //flowers
         if (level > 2){
+            g2.setColor(Main.c2);
 
             g2.drawLine(47, 300, 47, 350);
             g2.drawLine(30, 320, 60, 320);
 
         }
         if (level > 3){
+            g2.setColor(Main.c5);
             g2.drawRect(30, 260, 35, 35);
             g2.drawLine(47, 280, 47, 280);
         }
 
         if (level > 4){
+            g2.setColor(Main.c2);
             g2.drawLine(447, 300, 447, 350);
             g2.drawLine(430, 320, 460, 320);
         }
         if (level > 5){
+            g2.setColor(Main.c5);
             g2.drawRect(430, 260, 35, 35);
             g2.drawLine(447, 280, 447, 280);
 
@@ -60,6 +65,7 @@ public class Draw extends JPanel {
 
         if (level > 6) {
             // box bottom
+            g2.setColor(Main.c4);
             g2.fillRect(300, 330, 90, 20);
         }
         if (level > 7) {
@@ -129,7 +135,7 @@ public class Draw extends JPanel {
         // deleting...
         if (level > 22) {
             // legs
-            g2.setColor(Color.white);
+            g2.setColor(Main.c3);
             // delete boxes
             // with brock (5) legs 1
             g2.drawLine(350, 250, 400, 250);
@@ -160,7 +166,7 @@ public class Draw extends JPanel {
 
         // add leg
         if (level > 22) {
-            g2.setColor(Color.black);
+            g2.setColor(Main.c4);
             g2.drawLine(350, 250, 330, 310);
         }
         if (level > 22) {

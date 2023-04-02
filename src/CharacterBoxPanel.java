@@ -9,7 +9,7 @@ public class CharacterBoxPanel extends JPanel {
 
     public CharacterBoxPanel(String w) {
         super(new FlowLayout());
-        setBackground(Color.white);
+        setBackground(Main.c3);
 
         for (int i = 0; i < w.length(); i++) {
             CharacterBox box = new CharacterBox(w.charAt(i));

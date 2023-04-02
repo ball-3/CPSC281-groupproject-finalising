@@ -14,23 +14,15 @@ public class GameoverPanel extends JPanel {
         setOpaque(true);
         setBackground(Color.BLUE);
         setPreferredSize(new Dimension(1000, 650));
-        JButton restart = new JButton("menu");
-        restart.addActionListener((ActionListener) new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-
-
-            }
-
-        });
-        add(restart);
+        
         word = w;
 
         if (clear) {
             result = "CLEAR";
-            color = Color.CYAN;
+            color = Main.c1;
         } else {
             result = "GAME OVER";
-            color = Color.pink;
+            color = Main.c5;
         }
 
     }
@@ -40,7 +32,7 @@ public class GameoverPanel extends JPanel {
         g2.setColor(color);
         g2.fillRect(0, 0, 1000, 650);
 
-        g2.setColor(Color.black);
+        g2.setColor(Main.c3);
         g2.setFont(new Font("MS Comic Sans", Font.BOLD, 80));
         g2.drawString(result, 150, 100);
         g2.setFont(new Font("MS Comic Sans", Font.BOLD, 40));
