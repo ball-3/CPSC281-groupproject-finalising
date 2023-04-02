@@ -41,6 +41,7 @@ public class Hangman extends JFrame implements ActionListener {
         createGUI();
     }
 
+
     public boolean CheckGame() { //check clear or not
         for (int i = 0; i < currentDisplay.length(); i++){
             if (currentDisplay.charAt(i)=='0'){

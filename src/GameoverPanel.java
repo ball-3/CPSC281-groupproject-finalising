@@ -28,9 +28,10 @@ public class GameoverPanel extends JPanel {
         if (clear) {
             result = "CLEAR";
             color = Color.CYAN;
-        } else
+        } else {
             result = "GAME OVER";
-        color = Color.pink;
+            color = Color.pink;
+        }
 
     }
 
@@ -40,10 +41,11 @@ public class GameoverPanel extends JPanel {
         g2.fillRect(0, 0, 1000, 650);
 
         g2.setColor(Color.black);
+        g2.setFont(new Font("MS Comic Sans", Font.BOLD, 80));
+        g2.drawString(result, 150, 100);
         g2.setFont(new Font("MS Comic Sans", Font.BOLD, 40));
-        g2.drawString(result, 300, 100);
-        g2.drawString("Answer was:", 300, 300);
-        g2.drawString(word, 300, 350);
+        g2.drawString("Answer was:", 100, 300);
+        g2.drawString(word, 400, 300);
 
     }
 

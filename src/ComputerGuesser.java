@@ -11,7 +11,8 @@ public class ComputerGuesser extends Player{
 
     public ComputerGuesser(){
         listOfGuessedLetters = new ArrayList<>();
-        bigramGraph = new BigramGraph();
+        //TODO: need a way for computer guesser to tell if computer is picker
+        bigramGraph = new BigramGraph(true);
         currentLetter = null;
         letterToGuess = null;
         nextLetterToGuess = null;
@@ -19,10 +20,21 @@ public class ComputerGuesser extends Player{
     }
 
     public void guessLetter(){
+        if(bigramGraph.isCompPicker){
+            guessLetterSmart();
+        }else{
+            guessLetterNormal();
+        }
+
+    }
+
+    public void guessLetterNormal(){
         if(nextLetterToGuess != null){
+            // there is a good next letter to guess
             guessedLetter = nextLetterToGuess.label;
             currentLetter = nextLetterToGuess;
         }else{
+            // no good letter to guess so it generates a random one
             getNewLetterToGuess();
         }
 
@@ -32,25 +44,83 @@ public class ComputerGuesser extends Player{
         listOfGuessedLetters.add(currentLetter);
 
         if(correctGuessIndexes.isEmpty()){
+            // letter was not in word so guess was false
             guessedLetterCorrect = false;
             System.out.println("Letter was incorrect.");
             bigramGraph.listOfLetters.remove(currentLetter);
             currentLetter = null;
             nextLetterToGuess = null;
         }else{
+            // guess was correct so we can look at the next best letter to guess based on this one
             guessedLetterCorrect = true;
             letterToGuess = null;
             System.out.println("Letter was correct.");
             bigramGraph.listOfLetters.remove(currentLetter);
+
             getNextLetterToGuess();
+
+        }
+    }
+
+    public void guessLetterSmart(){
+        if(nextLetterToGuess != null){
+            // there is a good next letter to guess
+            guessedLetter = nextLetterToGuess.label;
+            currentLetter = nextLetterToGuess;
+        }else{
+            // no good letter to guess, so it generates a random one
+            getNewLetterToGuess();
         }
 
+        System.out.println("\nGuessed letter: " + guessedLetter);
+        correctGuessIndexes = checkLetter(guessedLetter);
 
+        listOfGuessedLetters.add(currentLetter);
 
-//        if(word.lettersLeft == 0){
-//            wordIsGuessed = true;
-//            System.out.println("\nI got the correct word!");
-//        }
+        if(correctGuessIndexes.isEmpty()){
+            // letter was not in word so guess was false
+            guessedLetterCorrect = false;
+            System.out.println("Letter was incorrect.");
+            bigramGraph.listOfLetters.remove(currentLetter);
+
+            // sets all freqencies of this letter to 0 (basically removing it from the graph)
+            for(char letter = 'a'; letter <= 'z'; letter++){
+                bigramGraph.totalFrequencies.get(letter).replace(currentLetter.label, 0);
+            }
+            currentLetter = null;
+            nextLetterToGuess = null;
+        }else{
+            // guess was correct so we can look at the next best letter to guess based on this one
+            guessedLetterCorrect = true;
+            letterToGuess = null;
+            System.out.println("Letter was correct.");
+            bigramGraph.listOfLetters.remove(currentLetter);
+
+            // sets all freqencies of this letter to 0 (basically removing it from the graph)
+            for(char letter = 'a'; letter <= 'z'; letter++){
+                bigramGraph.totalFrequencies.get(letter).replace(currentLetter.label, 0);
+            }
+
+            getNextLetterToGuessSmart();
+
+        }
+    }
+
+    public void getNextLetterToGuessSmart(){
+        char letterWithHighestFrequency  = '\0';
+        int highestFrequency = 0;
+        for(char letter = 'a'; letter <= 'z'; letter++){
+           if(bigramGraph.totalFrequencies.get(currentLetter).get(letter) > highestFrequency){
+               letterWithHighestFrequency = letter;
+               highestFrequency = bigramGraph.totalFrequencies.get(currentLetter).get(letter);
+           }
+        }
+
+        if(highestFrequency != 0){
+            nextLetterToGuess = new Letter(letterWithHighestFrequency);
+        }else{
+            nextLetterToGuess = null;
+        }
     }
 
     public ArrayList<Integer> checkLetter(char x){
